@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block page_title %} 
+
+{% if todo.pk %}
+        Editar tarefa 
+       {% else %}
+        Nova tarefa 
+  {% endif %}
+
+{% endblock page_title %}
+
+{% block content %}
+
+  {% if todo.pk %}
+       <h1> Editar tarefa </h1>
+       {% else %}
+       <h1> Novo empréstimo </h1>
+  {% endif %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyTk4LADH8zsXUtUJQmCCUpT9aW+631cFq" crossorigin="anonymous">
+  <div class="container mt-5">
+
+    <form method="POST" action="{% url 'cadastra_novo_emprestimo' %}" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <!-- Campo para o título -->
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <div class="invalid-feedback">
+                Por favor, forneça um título.
+            </div>
+        </div>
+
+        <!-- Campo para o ID do Cliente -->
+        <div class="form-group">
+            <label for="idCliente">ID do Cliente:</label>
+            <!--<input type="number" class="form-control" id="idCliente" name="idCliente" required>-->
+            {% if json_dataCli %}
+            <select class="form-control" id="idCliente" name="idCliente" required>
+                {% for cliente in json_dataCli %}
+                    <option value="{{ cliente.id }}">{{ cliente.nome }} - {{ cliente.cpf }}
+                    </option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <div class="invalid-feedback">
+                Por favor, forneça um ID de cliente válido.
+            </div>
+        </div>
+
+        <!-- Campo para o ID do Livro -->
+        <div class="form-group">
+            <label for="idLivro">ID do Livro:</label>
+            <!--<input type="number" class="form-control" id="idLivro" name="idLivro" required>-->
+            {% if json_dataLiv %}
+            <select class="form-control" id="idLivro" name="idLivro" required>
+                {% for livro in json_dataLiv %}
+                    <option value="{{ livro.id }}">{{ livro.nome }} - {{ livro.editora }} ({{ livro.ano }})
+
+                    </option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <div class="invalid-feedback">
+                Por favor, forneça um ID de livro válido.
+            </div>
+        </div>
+
+        <!-- Campo para a Data de Devolução -->
+        <div class="form-group">
+            <label for="dataDevolucao">Data de Devolução:</label>
+            <input type="date" class="form-control" id="dataDevolucao" name="dataDevolucao" required>
+            <div class="invalid-feedback">
+                Por favor, forneça uma data de devolução válida.
+            </div>
+        </div>
+
+        <!-- Campo para a Data de Entrega -->
+        <!--<div class="form-group">
+            <label for="entregueem">Entregue Em:</label>
+            <input type="date" class="form-control" id="entregueEm" name="entregueEm">
+        </div>-->
+        <br>
+        <!-- Botão de envio -->
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+
+{% endblock content %}
+
+
+    
