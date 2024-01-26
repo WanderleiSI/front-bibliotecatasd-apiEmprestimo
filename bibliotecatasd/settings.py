@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!1*o=r%gsnitl450g_5a%(%9yx_#75*o6sjpwy93e!g)4jl3li
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['api-emprestimo-bibliotecatasd.azurewebsites.net']
 
 
 # Application definition
