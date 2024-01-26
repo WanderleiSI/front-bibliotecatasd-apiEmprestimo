@@ -13,8 +13,8 @@ def home(request):
 
 def novo_emprestimo(request):
 
-        responseLiv = requests.get("http://127.0.0.1:8001/livro/")
-        responseCli = requests.get("http://127.0.0.1:8002/cliente/")
+        responseLiv = requests.get("http://18.228.193.35/livro/")
+        responseCli = requests.get("https://api-cliente-bibliotecatasd2.azurewebsites.net/cliente/")
 
         json_dataLiv = responseLiv.json()
         json_dataCli = responseCli.json()
