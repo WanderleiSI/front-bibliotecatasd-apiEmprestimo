@@ -13,8 +13,8 @@ def home(request):
 
 def novo_emprestimo(request):
 
-        responseLiv = requests.get("http://18.228.193.35/livro/")
-        responseCli = requests.get("https://api-cliente-bibliotecatasd2.azurewebsites.net/cliente/")
+        responseLiv = requests.get("http://54.158.128.103/livro/")
+        responseCli = requests.get("http://52.90.116.209/cliente/")
 
         json_dataLiv = responseLiv.json()
         json_dataCli = responseCli.json()
@@ -76,8 +76,8 @@ def editar_emprestimo_id(request, pk):
     else:
         formulario = FormEmprestimo(instance=emprestimo)
 
-    responseLiv = requests.get("http://18.228.193.35/livro/")
-    responseCli = requests.get("https://api-cliente-bibliotecatasd2.azurewebsites.net/cliente/")
+    responseLiv = requests.get("http://54.158.128.103/livro/")
+    responseCli = requests.get("http://52.90.116.209/cliente/")
 
     json_dataLiv = responseLiv.json()
     json_dataCli = responseCli.json()
